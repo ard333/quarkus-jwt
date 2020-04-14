@@ -21,7 +21,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
  *
  * @author ard333
  */
-@Path("/user")
+@Path("/auth")
 public class AuthenticationREST {
 
 	@Inject

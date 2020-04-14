@@ -36,5 +36,4 @@ public class PBKDF2Encoder {
 			throw new RuntimeException(ex);
 		}
 	}
-
 }
