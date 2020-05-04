@@ -1,6 +1,8 @@
 package com.ard333.quarkusjwt.model;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
@@ -25,22 +27,16 @@ public class User {
 		//if using Panache pattern (extends or PanacheEntity PanacheEntityBase)
 		//return find("username", username).firstResult();
 
+		Map<String, User> data = new HashMap<>();
 
-		
-		String userUsername = "user";
+		//username:passwowrd -> user:user
+		data.put("user", new User("user", "cBrlgyL2GI2GINuLUUwgojITuIufFycpLG4490dhGtY=", Collections.singleton(Role.USER)));
 
-		//generated from password encoder
-		String userPassword = "cBrlgyL2GI2GINuLUUwgojITuIufFycpLG4490dhGtY=";
+		//username:passwowrd -> admin:admin
+		data.put("admin", new User("admin", "dQNjUIMorJb8Ubj2+wVGYp6eAeYkdekqAcnYp+aRq5w=", Collections.singleton(Role.ADMIN)));
 
-		String adminUsername = "admin";
-
-		//generated from password encoder
-		String adminPassword = "dQNjUIMorJb8Ubj2+wVGYp6eAeYkdekqAcnYp+aRq5w=";
-		
-		if (username.equals(userUsername)) {
-			return new User(userUsername, userPassword, Collections.singleton(Role.USER));
-		} else if (username.equals(adminUsername)) {
-			return new User(adminUsername, adminPassword, Collections.singleton(Role.ADMIN));
+		if (data.containsKey(username)) {
+			return data.get(username);
 		} else {
 			return null;
 		}
